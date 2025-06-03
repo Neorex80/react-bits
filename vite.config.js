@@ -1,7 +1,8 @@
 import react from '@vitejs/plugin-react'
-import tailwindcss from '@tailwindcss/vite'
 import path from 'path'
 import safeParser from 'postcss-safe-parser'
+import tailwindcss from 'tailwindcss'
+import autoprefixer from 'autoprefixer'
 
 import { fileURLToPath } from 'url';
 import { defineConfig } from 'vite'
@@ -11,7 +12,7 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [react(), tailwindcss({ native: false })],
+  plugins: [react()],
   server: {
     hmr: true
   },
@@ -27,7 +28,11 @@ export default defineConfig({
   },
   css: {
     postcss: {
-      parser: safeParser
+      parser: safeParser,
+      plugins: [
+        tailwindcss,
+        autoprefixer
+      ]
     }
   },
   assetsInclude: ['**/*.glb']
