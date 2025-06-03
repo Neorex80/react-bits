@@ -4,7 +4,7 @@
 	"version": "0.0.0",
 	"type": "module",
 	"scripts": {
-		"dev": "TAILWIND_DISABLE_NATIVE=true vite",
+		"dev": "TAILWIND_ENGINE=postcss TAILWIND_DISABLE_NATIVE=true vite",
 		"build": "npm run build:registry && vite build",
 		"build:registry": "concurrently -p \"[{name}]\" -n \"default,tailwind,ts-default,ts-tailwind,readmes\" \"npm run build:registry:default\" \"npm run build:registry:tailwind\" \"npm run build:registry:ts-default\" \"npm run build:registry:ts-tailwind\" \"node ./scripts/createRegistryReadmes.js\"",
 		"build:registry:default": "jsrepo build --dirs ./src/content --output-dir ./public/default",
